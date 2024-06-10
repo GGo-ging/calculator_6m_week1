@@ -1,5 +1,7 @@
 package com.example.calc
 
+import java.io.IOException
+
 class Calculator_Lv2 {
     fun add(a: Double, b: Double): Double = a + b
 
@@ -7,7 +9,12 @@ class Calculator_Lv2 {
 
     fun multiply(a: Double, b: Double): Double = a * b
 
-    fun divide(a: Double, b: Double): Double = a / b
+    fun divide(a: Double, b: Double): Double {
+        if (b== 0.0) {
+            throw IOException("0으로 나눌 수 없습니다.")
+        }
+        return a / b
+    }
 
     fun remainder(a: Double, b: Double): Double = a % b
 }
@@ -60,7 +67,7 @@ fun main() {
                 println("결과 : ${calculator.remainder(a, b)}")
             }
 
-            else -> println("error")
+            else -> throw IOException("error")
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.example.calc
 
+import java.io.IOException
+
 interface Operation {
     fun execute(a: Double, b: Double): Double
 }
@@ -17,7 +19,12 @@ class MultiplyOperation : Operation {
 }
 
 class DivideOperation : Operation {
-    override fun execute(a: Double, b: Double): Double = a / b
+    override fun execute(a: Double, b: Double): Double {
+        if (b == 0.0) {
+            throw IOException("0으로 나눌 수 없습니다.")
+        }
+        return a / b
+    }
 }
 
 class Calculator_Lv3 {
@@ -62,7 +69,7 @@ fun main() {
                 val b = scanner.nextDouble()
                 println("결과 : ${calculator.calculate(DivideOperation(), a, b)}")
             }
-            else -> println("error")
+            else -> throw IOException("error")
         }
     }
 }
